@@ -178,15 +178,15 @@ let arr = [1,2,3];
 arr.unshift(4);
 console.log(arr); // [4,1,2,3]
 
-arr.shift(5,6,7);
-console.log(arr); // [5,6,7,1,2,3,4]
+arr.unshift(5,6,7);
+console.log(arr); // [5,6,7,4,1,2,3]
 ```
-4. Метод `shift` - удалить первій элемент из массива. Возвращает удаленный элемент.
+4. Метод `shift` - удалить первый элемент из массива. Возвращает удаленный элемент.
 ```
 let arr = [1,2,3];
 const first = arr.shift();
 console.log(arr); // [2,3]
-console.log(last); // 1
+console.log(first); // 1
 ```
 
 **Закрепим практикой**

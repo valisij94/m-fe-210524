@@ -161,5 +161,5 @@ btn.addEventListener('click', event => console.log('Click on the button!'), true
 
 
 ### Полезные ссылки
- - Описание формата (JSON)[https://habr.com/ru/articles/554274/]
+ - Раздел учебника про (всплытие и погружение)[https://learn.javascript.ru/bubbling-and-capturing]
  - Англоязычный хороший (источник)[https://www.freecodecamp.org/news/event-bubbling-and-event-capturing-in-javascript/] про event bubbling/capturing

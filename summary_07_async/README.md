@@ -39,11 +39,11 @@ console.log('Third');
 ```
 console.log('First');
 setTimeout( () => {
-  console.log('Second');
-  setTimeout( () => {
-    console.log('Third');
-  }, 100);
-  console.log('Fourth');
+    console.log('Second');
+    setTimeout( () => {
+        console.log('Third');
+    }, 100);
+    console.log('Fourth');
 }, 100);
 console.log('Fifth');
 ```

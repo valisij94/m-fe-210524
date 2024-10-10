@@ -7,16 +7,3 @@ const products = [
   { name: 'Drill', price: 125, category: 'tools', discount: true },
   { name: 'JigSaw', price: 250, category: 'tools' },
 ]
-
-
-console.log('Start')
-const pp = [];
-for (let i = 0; i < 5; i++) {
-  pp.push(new Promise( resolve => resolve(i) ));
-}
-setTimeout( () => console.log('Timon'));
-
-pp.forEach( el => {
-  el.then(r => console.log(r))
-})
-console.log('Finish')

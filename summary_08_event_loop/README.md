@@ -10,6 +10,7 @@
 1. Что выведет код?
 ```
 console.log('First');
+
 const myPromise = new Promise( (resolve, reject) => {
   resolve('Result');
 })
@@ -144,6 +145,8 @@ const myPromise = new Promise( (resolve, reject) => {
 myPromise.then( res => console.log(res) );
 
 console.log('Finish');
+
+// Start - Finish - Promise Result
 ```
 
 2.
@@ -151,10 +154,10 @@ console.log('Finish');
 console.log('Start');
 
 const myPromise = new Promise( (resolve, reject) => {
-  resolve('Promise Result');
+  fetch(URL).then(res => res.json()).then(res => resolve(res))
 });
 
-setTimeout( () => console.log('Timeout'), 0 );
+setTimeout( () => console.log('Timeout'), 1000 );
 
 myPromise.then(res => console.log(res) );
 

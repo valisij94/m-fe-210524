@@ -22,7 +22,7 @@ async function myAsyncFunction() {
 const resultFirst = myAsyncFunction();
 console.log(resultFirst); // Promise<pending>
 
-resultFirst().then( r => console.log(r) ); // 104
+resultFirst.then( r => console.log(r) ); // 104
 ```
 
 То есть мы видим, что если мы добавили слово `async` перед именем функции, то ее возвращаемое значение будет обернуто в промис. И с результатом этой функции мы можем работать только как с результатом промиса.
@@ -36,7 +36,7 @@ const arrowAsync = async () => {
 const resultFirst = arrowAsync();
 console.log(resultFirst); // Promise<pending>
 
-arrowAsync().then( r => console.log(r) ); // 98
+resultFirst.then( r => console.log(r) ); // 98
 ```
 
 Таким образом, мы делаем вывод, что если мы помечаем функцию как асинхронную, то она начинает себя вести как асинхронная, то есть ее результат будет обернут в промис, и для работы с результатом, нам нужно дождаться окончания выполнения этой функции.
@@ -49,7 +49,7 @@ arrowAsync().then( r => console.log(r) ); // 98
 ```
 async function requestSomething() {
    // мы помним, что fetch нам возвращает промис
-   const httpResponse = await fetch('https://dummyjson.com/products);
+   const httpResponse = await fetch('https://dummyjson.com/products');
    // JavaScript дождется, пока выполнится промис справа от await, и только потом
    // пойдет к следующей команде
    const parsedResponse = await httpResponse.json();

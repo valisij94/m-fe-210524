@@ -61,15 +61,19 @@ firstInstance.method()
   .finally( () => console.log('Finally') )
   .then( (res) => console.log(res) );
 console.log('After');
+
+// Before -> Async -> Promise -> After -> Finally -> Result ++++
+// Before -> Async -> After -> Promise -> Finally -> Result
 ```
 
 4. Что выведет код:
 ```
 const myObject = {
-  name: 'First Object',
+  name2: 'First Object',
   greet() {
-    console.log(`I am ${this.name}`)
+    console.log(`I am ${this.name2}`)
   }
+  greet1: function() {/.../}
 }
 
 myObject.greet();
@@ -78,7 +82,7 @@ const copyMethod = myObject.greet;
 copyMethod();
 
 const secondObject = {
-  name: 'Another object'
+  name2: 'Another object'
 }
 
 copyMethod.call(secondObject);

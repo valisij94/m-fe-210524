@@ -1,92 +1,95 @@
+
+
 class Slider {
 
-  #slidesContainerEl;
-  #dotsContainerEl;
+  #rootNode;
+  #imagesContainer;
+  #currentSlideNum = 0;
+  #currentShift = 0;
 
-  constructor(domSelector, images, options) {
-    const rootNode = document.querySelector(domSelector);
+  constructor(rootNodeSelector, images) {
+    const rootNode = document.querySelector(rootNodeSelector);
     if (!rootNode) {
       throw new Error('Incorrect root node!');
     }
-    this.rootNode = rootNode;
+    this.#rootNode = rootNode;
     this.images = images;
-    this.options = options; // || defaults
-    // State
-    this.currentSlideIndex = 0;
-    this.currentLeftShift = 0;
+    this.#init();
   }
 
-  init() {
-    // Slides container
+  // Shift formula: -1 * currentSlideNum * 100 + '%'
+  navigateNext() {
+    let targetSlide = this.#currentSlideNum + 1;
+    if (targetSlide === this.images.length) {
+      targetSlide = 0;
+    }
+    this.#currentSlideNum = targetSlide;
+    const shiftValue =  -100 * this.#currentSlideNum;
+    this.#currentShift = shiftValue;
+    this.#imagesContainer.style.left = shiftValue + '%';
+  }
+
+  navigatePrev() {
+    let targetSlide = this.#currentSlideNum - 1;
+    if (targetSlide < 0) {
+      targetSlide = this.images.length - 1;
+    }
+    this.#currentSlideNum = targetSlide;
+    const shiftValue =  -100 * this.#currentSlideNum;
+    this.#currentShift = shiftValue;
+    this.#imagesContainer.style.left = shiftValue + '%';
+  }
+
+  #init() {
+    const sliderContainerEl = document.createElement('div');
+    sliderContainerEl.classList.add('sliderContainer');
+
     const slidesContainerEl = document.createElement('div');
     slidesContainerEl.classList.add('slidesContainer');
-    // Dots container
-    const dotsContainerEl = document.createElement('div');
-    dotsContainerEl.classList.add('dotsContainer');
-    // Inflating slides and dots
-    this.images.forEach(img => {
-      const slideEl = document.createElement('div');
-      slideEl.classList.add('slide');
+
+    const imagesContainerEl = document.createElement('div');
+    imagesContainerEl.classList.add('imagesContainer');
+    this.#imagesContainer = imagesContainerEl;
+
+    // создать div.dotsContainer
+    const dotsContainer = document.createElement('div');
+    dotsContainer.classList.add('dotsContainer');
+
+    // создать div.navigationContainer
+    const navContainer = document.createElement('div');
+    navContainer.classList.add('navContainer');
+    const arrowLeft = document.createElement('div');
+    arrowLeft.classList.add('arrow', 'arrowLeft');
+    arrowLeft.textContent = 'Prev';
+    const arrowRight = document.createElement('div');
+    arrowRight.classList.add('arrow', 'arrowRight');
+    arrowRight.textContent = 'Next';
+    navContainer.append(arrowLeft, arrowRight);
+
+    arrowLeft.addEventListener('click', this.navigatePrev.bind(this));
+    arrowRight.addEventListener('click', this.navigateNext.bind(this));
+
+    this.images.forEach( (img, idx) => {
       const imgEl = document.createElement('img');
       imgEl.src = img;
-      slideEl.append(imgEl);
-      slidesContainerEl.append(slideEl);
-
+      imgEl.classList.add('slide');
+      imagesContainerEl.append(imgEl);
+      // создать элементы для точек: div.dot, и добавить в dotsContainer
       const dotEl = document.createElement('div');
       dotEl.classList.add('dot');
-      dotsContainerEl.append(dotEl);
+      dotEl.dataset.ordernum = idx;
+      dotsContainer.append(dotEl);
     });
 
-    // Navigation
-    const navContainerEl = document.createElement('div');
-    navContainerEl.classList.add('slidesNavigation');
-    const leftArrow = document.createElement('div');
-    leftArrow.classList.add('arrow', 'left');
-    leftArrow.textContent = 'Prev';
-    const rightArrow = document.createElement('div');
-    rightArrow.classList.add('arrow', 'right');
-    rightArrow.textContent = 'Next';
-    navContainerEl.append(leftArrow, rightArrow);
+    slidesContainerEl.append(imagesContainerEl);
+    sliderContainerEl.append(navContainer, slidesContainerEl, dotsContainer);
 
-    // Adding into DOM
-    this.rootNode.append(navContainerEl, slidesContainerEl, dotsContainerEl);
-    // Save link
-    this.#slidesContainerEl = slidesContainerEl;
-    this.#dotsContainerEl = dotsContainerEl;
-
-    // Event listeners
-    leftArrow.addEventListener('click', this.#slidePrev.bind(this));
-    rightArrow.addEventListener('click', this.#slideNext.bind(this));
-  }
-
-  #slidePrev() {
-    let targetSlideIndex = this.currentSlideIndex - 1;
-    if (targetSlideIndex < 0) {
-      targetSlideIndex = this.images.length - 1;
-    }
-    const newLeft = (-100 * targetSlideIndex);
-    this.currentLeftShift = newLeft;
-    this.#slidesContainerEl.style.left = newLeft + '%';
-    this.currentSlideIndex = targetSlideIndex;
-  }
-
-  #slideNext() {
-    let targetSlideIndex = this.currentSlideIndex + 1;
-    if (targetSlideIndex === this.images.length) {
-      targetSlideIndex = 0;
-    }
-    const newLeft = (-100 * targetSlideIndex);
-    this.currentLeftShift = newLeft;
-    this.#slidesContainerEl.style.left = newLeft + '%';
-    this.currentSlideIndex = targetSlideIndex;
+    this.#rootNode.append(sliderContainerEl);
   }
 }
 
-const images = [
-  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQkS27iyLb_F_MQNX1ZSsAt39GMh1_gM0LpLQ&s',
-  'https://cdn.fishki.net/upload/post/2022/09/17/4265074/tn/451237f7e654f398aabe255184e20f64.jpg',
-  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8ZFf286QHxalFb8A4ACXvOzY3gVXSrBX2Jw&s'
-];
 
-const slider = new Slider('.slider', images);
-slider.init();
+const sliderEl = new Slider('.slider', [
+  'https://images.prom.ua/1029691327_w600_h600_labrador-retriver.jpg',
+  'https://www.happypet.care/_next/image?url=https%3A%2F%2Fhappypetproduction.s3.ap-south-1.amazonaws.com%2FbreedFiles%2Fdog%2F64d6461c7712a1493d6bc279%2FgalleryImages%2Flarge_file_1725051198278.webp&w=1080&q=75',
+  'https://cdn.wamiz.fr/cdn-cgi/image/format=auto,quality=80,width=532,height=532,fit=cover/animal/breed/dog/adult/66fd0ed8598bc632838841.jpg']);

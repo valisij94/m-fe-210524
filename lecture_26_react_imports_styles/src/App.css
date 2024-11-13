@@ -1,5 +1,7 @@
 .App {
   text-align: center;
+  padding: 20px;
+  background-color: red;
 }
 
 .App-logo {
@@ -35,4 +37,13 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.customParagraph {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.simpleStyle {
+  background-color: yellowgreen;
 }

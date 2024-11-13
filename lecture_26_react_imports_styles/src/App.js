@@ -1,12 +1,12 @@
 import logo from './logo.svg';
 import './App.css';
 
-import SimpleParagraph from './components/simpleParagraph/SimpleParagraph.jsx';
+import Copyright from './components/copyright/Copyrgiht';
 
 function App() {
   return (
     <div className="App simpleStyle">
-      <SimpleParagraph />
+      <Copyright/>
     </div>
   );
 }

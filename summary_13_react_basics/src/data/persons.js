@@ -21,6 +21,8 @@ const Bilbo = {
   weapons: ['Dagger']
 }
 
+export {Torin, Gandalf, Bilbo};
+
 const programe = ['Introduction', 'Melee', 'Archery tournament', 'Magic show', 'Final banquet'];
 
 const detailed = [

@@ -1,0 +1,14 @@
+.myFirstClass {
+  padding: 10px;
+  background-color: aqua;
+  border-radius: 10px;
+}
+
+.simpleStyle {
+  background-color: red;
+}
+
+.container {
+  background-color: pink;
+  padding: 20px;
+}

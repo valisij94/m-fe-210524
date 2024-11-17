@@ -96,7 +96,7 @@ function App() {
 ```
 function StyledParagraph( { text='Default text', paragraphClass='simpleParagraph'} ) {
   return (
-    <p className={props.paragraphClass}>{props.text}</p>
+    <p className={paragraphClass}>{text}</p>
   )
 }
 ```

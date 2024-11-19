@@ -22,7 +22,7 @@ Props (пропсы) - это сокращение от `properties`, то ес�
 ```
 export default function SimpleHeader(props) {
   return (
-    <h3 className='simpleHeader'>{props.headerText}</p>
+    <h3 className='simpleHeader'>{props.headerText}</h3>
   )
 }
 ```

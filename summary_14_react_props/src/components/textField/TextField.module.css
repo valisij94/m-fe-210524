@@ -1,0 +1,23 @@
+.textField {
+  padding: 10px;
+  border: 1px solid gray;
+  border-radius: 10px;
+}
+
+.textFieldContainer {
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.small {
+  width: 30%;
+}
+
+.medium {
+  width: 65%;
+}
+
+.large {
+  width: 100%;
+}

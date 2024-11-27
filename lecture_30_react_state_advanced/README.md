@@ -38,7 +38,7 @@ function Human( { humanName} ) {
       {
         pockets.map(thing => <p key={thing}>{thing}</p>)
       }
-      <input type='text' value={input} onChange={setInput}/>
+      <input type='text' value={input} onChange={handleInputChange}/>
       <button onClick={addSomething}>Add something</button>
     </div>
   )

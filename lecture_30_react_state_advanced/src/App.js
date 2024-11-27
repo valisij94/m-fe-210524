@@ -1,12 +1,17 @@
+import { useState } from 'react';
 import './App.css';
 
-import Copyright from './components/copyright/Copyrgiht';
+import LoginForm from './components/loginForm/LoginForm';
+import Greeting from './components/greeting/Greeting';
 
 function App() {
 
+  const [loginValue, setLoginValue] = useState('');
+
   return (
     <div className="App simpleStyle">
-      <Copyright/>
+      <LoginForm setLoginValue={setLoginValue}/>
+      <Greeting userName={loginValue} />
     </div>
   );
 }

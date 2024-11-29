@@ -1,11 +1,8 @@
 import { useState } from 'react';
 import './App.css';
-
 import TodoList from './components/todoList/TodoList';
 import TodoStats from './components/todoList/TodoStats';
-import LoginForm from './components/loginForm/LoginForm'
-import Greeting from './components/greeting/Greeting';
-import LonelyMountainRoute from './components/mountainRoute/MountainRoute';
+import Copyright from './components/copyright/Copyrgiht';
 
 function App() {
 
@@ -17,18 +14,15 @@ function App() {
     });
   }
 
-  const [loginValue, setLoginValue] = useState('');
-
   return (
     <div className="App simpleStyle">
 
-      <LonelyMountainRoute />
+      <h2>Simple TodoList Project</h2>
 
       <TodoList todos={todos} dropTodo={dropTodo}/>
       <TodoStats todos={todos}/>
 
-      <LoginForm setLoginValue={setLoginValue}/>
-      <Greeting userName={loginValue} />
+      <Copyright />
     </div>
   );
 }

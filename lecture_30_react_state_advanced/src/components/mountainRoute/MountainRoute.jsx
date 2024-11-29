@@ -16,12 +16,17 @@ export default function LonelyMountainRoute() {
     })
   }
 
+  const removeLocation = (event) => {
+    const pt = event.currentTarget.dataset.location;
+    setPoints( old => old.filter(point => point !== pt ));
+  }
+
   return (
     <div className="lonelyMountainRouteContainer">
       {
         points.map( point => {
           return (
-            <div key={point}>
+            <div key={point} data-location={point} onClick={removeLocation}>
               <p>{point}</p>
             </div>
           );

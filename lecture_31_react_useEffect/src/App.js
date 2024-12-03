@@ -4,6 +4,9 @@ import './App.css';
 import Greeting from './components/greeting/Greeting';
 import Copyright from './components/copyright/Copyrgiht'
 import TodoList from './components/todoList/TodoList';
+import { useEffect, useState } from 'react';
+import SimpleCounter from './components/counter/SimpleCounter';
+import DateTime from './components/dateTime/DateTime';
 
 function App() {
 
@@ -19,9 +22,18 @@ function App() {
     setTodosHeader(inputValue);
   }
 
+  const [isTodoListVisible, setTodoListVisible] = useState(true);
+
+  const manageTodoListVisibility = () => {
+    setTodoListVisible( old => !old );
+  }
+
   return (
     <div className="App simpleStyle">
+
+      <DateTime />
       <Greeting />
+
       <input
         value={inputValue}
         type='text'
@@ -29,11 +41,13 @@ function App() {
         placeholder='Todos list header'
       />
       <button onClick={changeTodosHeader}>Change todos header</button>
-      <TodoList
+
+      <button onClick={manageTodoListVisibility}>Show/Hide TodoList</button>
+      { isTodoListVisible && <TodoList
         todosHeader={todosHeader}
         todos={todos}
         dropLastTodo={dropLastTodo}
-      />
+      /> }
       <Copyright/>
     </div>
   );

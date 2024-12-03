@@ -1,4 +1,17 @@
+import { useEffect } from "react";
+
 export default function TodoList( {todos, dropLastTodo, todosHeader} ) {
+
+  useEffect( () => {
+
+    return () => {
+      console.log('Component TodoList is unmounted!')
+    }
+  }, []);
+
+  useEffect( () => {
+    console.log('TodosHeader prop had changed!')
+  }, [todosHeader]);
 
   return (
     <div className='todoListContainer'>

@@ -93,10 +93,13 @@ export default function ProductCard( {productId} ) {
 
 Разумеется, можно переписать наш эффект с использованием `async/await`.
 ```
-  useEffect( async () => {
-    const resp = await fetch('https://dummyjson.com/products/' + productId);
-    const productData = resp.json();
-    setProduct(productData);
+  useEffect( () => {
+    const fetchData = async () => {
+      const resp = await fetch('https://dummyjson.com/products/' + productId);
+      const productData = await resp.json();
+      setProduct(productData);
+    }
+    fetchData();
   }, [productId]);
 ```
 

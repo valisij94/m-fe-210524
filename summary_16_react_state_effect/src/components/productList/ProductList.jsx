@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import styles from './ProductList.module.css';
 import ProductCard from "../productCard/ProductCard";
 
 export default function ProductList() {
@@ -11,8 +12,9 @@ export default function ProductList() {
       .then(data => setProducts(data.products));
   }, [])
 
+  console.log('PL render')
   return (
-    <div className="productListContainer">
+    <div className={styles.productListContainer}>
       {products.map( (prod) => <ProductCard key={prod.id} product={prod}/>)}
     </div>
   );

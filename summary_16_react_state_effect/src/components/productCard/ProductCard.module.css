@@ -1,0 +1,19 @@
+.productCard {
+  border: 1px solid gray;
+  border-radius: 10px;
+  box-shadow: 5px 5px 15px lightgray;
+  padding: 10px;
+}
+
+.tagsContainer {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  color: white;
+}
+
+.tag {
+  background-color: darkgreen;
+  border-radius: 15px;
+  padding: 5px 10px;
+}

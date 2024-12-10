@@ -3,7 +3,11 @@ import './App.css';
 
 import Copyright from './components/copyright/Copyrgiht'
 import TodoList from './components/todoList/TodoList';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import { ThemeContext } from './context/ThemeContext';
+import Button from './components/button/Button';
+import SimpleCounter from './components/counter/SimpleCounter';
+import { CounterContext } from './context/CounterContext';
 
 function App() {
 
@@ -31,10 +35,26 @@ function App() {
       });
   }, []);
 
+  const [counter, setCounter] = useState(0);
+  const incrementHandler = () => setCounter(counter + 1);
+  const decrementHandler = () => setCounter(counter - 1);
+
+  const themeContext = useContext(ThemeContext);
+
+
   return (
     <div className="App simpleStyle">
-        <TodoList todos={todos} dropTodoById={dropTodoById} checkTodo={checkTodo}/>
+        <Button clickHandler={themeContext.switchTheme} btnText="Switch theme"></Button>
+        <CounterContext.Provider value={counter}>
+          <SimpleCounter/>
+          <button onClick={incrementHandler}>Increment</button>
+          <button onClick={decrementHandler}>Decrement</button>
+          <TodoList todos={todos} dropTodoById={dropTodoById} checkTodo={checkTodo}/>
+        </CounterContext.Provider>
+
+        <SimpleCounter/>
         <Copyright/>
+        <Button btnText="Simple btn" clickHandler={() => {}} />
     </div>
   );
 }

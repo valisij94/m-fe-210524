@@ -1,4 +1,5 @@
-import { createContext, useState } from 'react';
+import { createContext } from 'react';
+import { useState } from 'react';
 
 // по-прежнему экспортируем контекст - он нам понадобится в потребителях
 export const ThemeContext = createContext('light');

@@ -32,7 +32,7 @@ export default function Button( {text, clickHandler} ) {
   }
 
   return (
-    { /* указыываем, к какому DOM-элементу мы прикрепляем реф */ }
+    /* указыываем, к какому DOM-элементу мы прикрепляем реф */
     <button onClick={btnClickHandler} ref={btnRef}>{text}</button>
   );
 }

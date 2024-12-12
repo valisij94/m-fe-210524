@@ -1,0 +1,16 @@
+.button {
+  padding: 8px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.light {
+  background-color: lightskyblue;
+  color: darkblue;
+}
+
+.dark {
+  background-color: darkblue;
+  color: white;
+}

@@ -29,7 +29,7 @@ import App from "./app";
 
 const root = document.getElementById("root");
 
-ReactDOM.createRoot(root).render(
+root.render(
   <BrowserRouter>
     <App />
   </BrowserRouter>
@@ -173,7 +173,4 @@ function Header() {
 
 
 ### Полезные ссылки
-[Использование рефов](https://react.dev/learn/referencing-values-with-refs#) - работа с рефами как с хранилищем.
-[Императивная работа с DOM](https://react.dev/learn/manipulating-the-dom-with-refs) - работа с DOM напрямую.
-[Хук useRef](https://react.dev/reference/react/useRef) - информативно, с интерактивными примерами.
-[Библиотека react-hook-form](https://www.react-hook-form.com/get-started/) - официальная документация проекта. Очень информативная, и с примерами.
+[Библиотека react-router](https://reactrouter.com/start/library/routing) - официальная документация проекта.

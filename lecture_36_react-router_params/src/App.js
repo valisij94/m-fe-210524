@@ -4,6 +4,8 @@ import { Routes, Route } from "react-router";
 import Copyright from './components/copyright/Copyrgiht.jsx';
 import Home from './pages/Home.jsx';
 import Detail from './pages/Detail.jsx';
+import ProductsPage from './pages/ProductsPage.jsx';
+import ProductCard from './components/productCard/ProductCard.jsx';
 
 function App() {
 
@@ -13,7 +15,8 @@ function App() {
       <div className='mainPageContainer'>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path='detail/:detail_id' element={<Detail />} />
+          <Route path="/products/:category_name?" element={<ProductsPage />} />
+          <Route path="/details/:detail_id?/:someOther?" element={<Detail />} />
         </Routes>
       </div>
       <Copyright />

@@ -5,6 +5,7 @@ import Copyright from './components/copyright/Copyrgiht.jsx';
 import Home from './pages/Home.jsx';
 import Detail from './pages/Detail.jsx';
 import ProductsPage from './pages/ProductsPage.jsx';
+import CategoriesBlock from './components/categoriesBlock/CategoriesBlock.jsx';
 
 function App() {
 
@@ -12,6 +13,7 @@ function App() {
     <div className="App">
       <h2>This header will be rendered in ALL cases, independently of the route</h2>
       <div className='mainPageContainer'>
+        <CategoriesBlock />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/products/:category_name?" element={<ProductsPage />} />

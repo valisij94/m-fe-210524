@@ -1,0 +1,17 @@
+.categoriesContainer {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.categoryChip {
+  padding: 5px 10px;
+  background-color: aquamarine;
+  border-radius: 10px;
+  box-shadow: 5px 5px 15px lightgray;
+}
+
+.categoryChip {
+  padding: 0;
+  margin: 0;
+}

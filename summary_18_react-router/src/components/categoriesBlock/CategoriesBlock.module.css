@@ -11,7 +11,7 @@
   box-shadow: 5px 5px 15px lightgray;
 }
 
-.categoryChip {
+.categoryChip p {
   padding: 0;
   margin: 0;
 }

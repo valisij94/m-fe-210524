@@ -6,6 +6,7 @@ import Home from './pages/Home.jsx';
 import Counter from './components/counter/Counter.jsx';
 import AddTodo from './components/todos/AddTodo.jsx';
 import TodoList from './components/todos/TodoList.jsx';
+import TodosFilter from './components/todos/TodosFilter.jsx';
 
 function App() {
 
@@ -19,7 +20,8 @@ function App() {
       </div>
 
       <AddTodo />
-      <Counter />
+      <br/>
+      <TodosFilter/>
       <TodoList />
       <Copyright />
     </div>

@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router";
 
 import Copyright from './components/copyright/Copyrgiht.jsx';
 import Home from './pages/Home.jsx';
+import Counter from './components/counter/Counter.jsx';
 
 function App() {
 
@@ -14,6 +15,8 @@ function App() {
           <Route path="/" element={<Home />} />
         </Routes>
       </div>
+
+      <Counter />
       <Copyright />
     </div>
   );

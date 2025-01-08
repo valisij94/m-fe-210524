@@ -82,8 +82,8 @@ export const store = createStore(
 ```
 // src/components/todos/AddTodo.jsx
 import {useState} from 'react';
-import { dispatch } from 'redux';
-import { addTodo } from '../../redux/actions/todoActions.js;
+import { addTodo } from '../../redux/actions/todoActions.js';
+import { useDispatch } from 'react-redux';
 
 export default function AddTodo() {
 
@@ -93,8 +93,10 @@ export default function AddTodo() {
     setTodo(e.target.value);
   }
 
+  const dispatch = useDispatch();
+
   const btnClickHandler = () => {
-    dispatch(addTodo(todo));
+    if (todo) dispatch(addTodo(todo));
   }
 
   return (

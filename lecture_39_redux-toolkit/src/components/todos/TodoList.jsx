@@ -3,13 +3,14 @@ import { dropTodo } from '../../redux/actions/todoActions';
 
 export default function TodoList() {
 
-  const { data, filter } = useSelector( state => state.todos );
+  //const { data, filter } = useSelector( state => state.todos );
   const dispatch = useDispatch();
+  const { todos: data } = useSelector(state => state.todos);
 
   let filteredData = data;
-  if (filter) {
-    filteredData = data.filter( el => el.length <= +filter.to && el.length >= +filter.from);
-  }
+  // if (filter) {
+  //   filteredData = data.filter( el => el.length <= +filter.to && el.length >= +filter.from);
+  // }
 
   return (
     <div>

@@ -8,6 +8,8 @@ import ProductsPage from './pages/ProductsPage.jsx';
 import { useDispatch, useSelector } from 'react-redux';
 import { switchThemeAction } from './redux/actions/themeActions.js';
 import Counter from './components/counter/Counter.jsx';
+import AddTodo from './components/todos/AddTodo.jsx';
+import TodoList from './components/todos/TodoList.jsx';
 
 function App() {
 
@@ -33,6 +35,8 @@ function App() {
         </Routes>
       </div>
       <Counter />
+      <AddTodo />
+      <TodoList />
       <Copyright />
     </div>
   );

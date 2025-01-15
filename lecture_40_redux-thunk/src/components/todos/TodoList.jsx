@@ -4,11 +4,12 @@ import { useEffect } from 'react';
 
 export default function TodoList() {
 
-  const { todos, filter } = useSelector( state => state.todos );
+  const { todos, filter, todoData } = useSelector( state => state.todos );
   const dispatch = useDispatch();
 
+  console.log(todoData)
   useEffect( () => {
-    dispatch(fetchTodos())
+    dispatch( fetchTodos() )
   }, [])
 
   let filteredData = todos;

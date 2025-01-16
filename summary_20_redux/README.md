@@ -24,3 +24,58 @@
 3. По соглашению, кастомные хуки должны именоваться с префиксом `use`.
 
 Давайте рассмотрим на конкретном примере. Ранее, мы реализовывали логику фильтрации для нашего списка товаров. У нас было 2 варианта: или реализовать это прямо в компоненте, или реализовать в редакс-стейте. Мы выбрали второй вариант, чтобы было поменьше кода в компоненте. Но есть еще и третий - это кастомные хуки!
+
+Попробуем вынести логику фильтрации (а заодно и сортировки) в кастомный хук. То есть, мы реализуем логику работы с редакс-стейтом, реализуем логику фильтрации и сортировки, и все это вернем из хука. Зачем нам здесь хук? Потому что нам нужно использовать хук `useSelector` для работы со стейтом, и для подписки на стейт, а использовать хуки мы можем или в компонентах, или в других хуках.
+
+Создадим папку `hooks`, а в ней файл `useProductsFilter.jsx`. Можно установить расширение `.js`, это ничего не поменяет.
+
+И реализуем в нем логику сортировки и фильтрации.
+
+```
+import { useSelector } from "react-redux";
+
+/** Функция фильтрации. Принимает на вход объект с данными товара, и объект с данными фильтров. Если товар удовлетворяет
+* фильтрам - вернет true, иначе false. */
+const filterProduct = (productData, filters) => {
+  if (!filters) return true;
+  const {name, priceFrom, priceTo} = filters;
+  return (
+    ((name && productData.title.toLowerCase().indexOf(name.toLowerCase()) >= 0) || (!name)) &&
+    ( (priceFrom && productData.price >= priceFrom) || !priceFrom) &&
+    ( (priceTo && productData.price <= priceTo) || !priceTo)
+  );
+};
+
+/** Функция сортировки. Если задано условие сортировки - применяем сортировку. */
+const sortProduct = (products, orderBy) => {
+  if (!orderBy) return products;
+  switch (orderBy) {
+    case 'priceAsc': return products.sort( (a,b) => a.price - b.price );
+    case 'priceDesc': return products.sort( (a,b) => b.price - a.price );
+    case 'nameAsc' : return products.sort( (a,b) => a.title.localeCompare(b.title) );
+    case 'nameDesc' : return products.sort( (a,b) => b.title.localeCompare(a.title) );
+    default: return products;
+  }
+};
+
+/** Собственно, кастомный хук */
+export default function useProductsFilter() {
+
+  const { filters, products } = useSelector(state => state.products);
+
+  const filteredProducts = products.filter( (el) => filterProduct(el, filters) );
+  if (filters && filters.orderBy) {
+    sortProduct(filteredProducts, filters.orderBy);
+  }
+
+  return filteredProducts;
+}
+```
+
+И нам осталось только воспользоваться этим хуком в компоненте, например в `ProductsPage`. Теперь, данные для отрисовки мы будем брать не из редакс-стейта, а из нашего хука.
+
+```
+const products = useProductFilter();
+```
+
+И теперь, наш компонент получает отфильтрованные товары. При этом, вся логика работы со стейтом, логика фильтрации и сортировки вынесена в кастомный хук, наш компонент об этом ничего не знает, и это прекрасно. Также, наш компонент будет ре-рендериться каждый раз, когда будет обновляться наш кастомный хук. А наш кастомный хук будет обновляться каждый раз, когда изменится тот фрагмент редакс-стейта, на который он подписан.

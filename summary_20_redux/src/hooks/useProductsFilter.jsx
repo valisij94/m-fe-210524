@@ -22,13 +22,16 @@ const sortProduct = (products, orderBy) => {
 };
 
 export default function useProductsFilter() {
-
-  const { filters, products } = useSelector(state => state.products);
+  const { filters, products, status, error } = useSelector(state => state.products);
 
   const filteredProducts = products.filter( (el) => filterProduct(el, filters) );
   if (filters && filters.orderBy) {
     sortProduct(filteredProducts, filters.orderBy);
   }
 
-  return filteredProducts;
+  return {
+    filteredProducts,
+    status,
+    error
+  };
 }

@@ -1,11 +1,8 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { applyFilters } from "../../redux/slices/productsSlice";
 
 export default function ProductFilter() {
 
   const [nameFilter, setNaemFilter] = useState('');
-  const dispatch = useDispatch();
 
   return (
     <div>
@@ -13,7 +10,7 @@ export default function ProductFilter() {
         value={nameFilter}
         onChange={(e) => setNaemFilter(e.target.value)}
         placeholder="name"/>
-      <button onClick={() => { dispatch(applyFilters({name: nameFilter})) }}>Apply Filters</button>
+      <button onClick={() => {}}>Apply Filters</button>
     </div>
   )
 }

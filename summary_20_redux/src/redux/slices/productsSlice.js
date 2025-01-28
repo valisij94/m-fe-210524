@@ -14,7 +14,11 @@ export const productsSlice = createSlice({
     status: 'idle',
     error: ''
   },
-  reducers: {},
+  reducers: {
+    applyFilters: (state, action) => {
+      state.filters = action.payload
+    }
+  },
   extraReducers: builder => {
     builder
       .addCase(fetchProducts.pending, (state, action) => {
@@ -30,5 +34,7 @@ export const productsSlice = createSlice({
       })
   }
 });
+
+export const {applyFilters} = productsSlice.actions;
 
 export default productsSlice.reducer;

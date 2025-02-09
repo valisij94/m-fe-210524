@@ -1,4 +1,4 @@
-import { duplicate, getItemTypes } from "./complexUtils";
+import { duplicate } from "./complexUtils";
 
 describe(
   'Test "duplicate" function',
@@ -10,27 +10,9 @@ describe(
     it( 'Check strings duplication', () => {
       expect(duplicate(['1','2','3'])).toEqual(['11','22','33']);
     });
+
+    it( 'Check non-number and non-string args', () => {
+      expect(duplicate([1,'2',true,{}])).toEqual([2, '22', null, null]);
+    })
   }
 );
-
-describe('Test "getItemTypes" function', () => {
-  it('Check numbers', () => {
-    expect(getItemTypes([1, 2, 3])).toEqual({ numberCnt: 3 });
-  });
-
-  it('Check strings', () => {
-    expect(getItemTypes(['1', '2', '3'])).toEqual({ strCnt: 3 });
-  });
-
-  it('Check strings and numbers', () => {
-    expect(getItemTypes(['1', '2', 3])).toEqual({ strCnt: 2, numberCnt: 1 });
-  });
-
-  it('Check arrays', () => {
-    expect(getItemTypes([['1'], ['2'], [3]])).toEqual({ arrayCnt: 3 });
-  });
-
-  it('Check empty array', () => {
-    expect(getItemTypes([])).toEqual({});
-  })
-});

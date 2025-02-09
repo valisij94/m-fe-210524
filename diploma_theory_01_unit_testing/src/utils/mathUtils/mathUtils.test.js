@@ -1,67 +1,77 @@
-import { add, divide } from "./mathUtils";
-
-// describe(
-//   'Suite for testing "add" function',
-//   () => {
-//   // test - это зарезервированное имя тест кейса, которое будет подхвачено Jest.
-//   test(
-//     'First test which checks the "add" function', // первый аргумент - это описание тест кейса
-//     () => { // второй аргумент - функция с самим юнит тестом
-//       const addResult = add(2,2); // вызываем нашу функцию, записываем результат в переменную
-//       expect(addResult).toBe(4); // сравниваем результат вызова нашей функции с ожидаемым значением
-//     }
-//   );
-
-//   test(
-//     'Second test which checks "add" function with strings',
-//     () => {
-//       const result = add('2',2);
-//       expect(result).toBe('something went wrong!');
-//     }
-//   );
-
-//   test(
-//     'Third test which checks "add" function with NaN',
-//     () => {
-//       const result = add(NaN,2);
-//       expect(result).toBe('something went wrong!');
-//     }
-//   );
-
-//   }
-// );
+import { add, subtract, multiply, divide } from "./mathUtils";
 
 describe(
   'Test "add" function',
   () => {
-    const testsData = [
-      { name: 'Check number+number', arg1: 2, arg2: 2, expected: 4 },
-      { name: 'Check non-number argument', arg1: '2', arg2: 2, expected: 'something went wrong!' },
-      { name: 'Check NaN argument', arg1: NaN, arg2: 2, expected: 'something went wrong!' },
-    ];
-    testsData.forEach( ({ name, arg1, arg2, expected }) => {
-      it( name, () => { // it === test, these are aliases
-        const result = add(arg1, arg2);
-        expect(result).toBe(expected);
-      })
+    test('Check number+number', () => {
+      const result = add(2,2);
+      expect(result).toBe(4);
+    });
+    test('Check non-number argument', () => {
+      const result = add('2', 2);
+      expect(result).toBe('something went wrong!');
+    });
+    test('Check NaN argument', () => {
+      const result = add(NaN, 2);
+      expect(result).toBe('something went wrong!');
     });
   }
-);
+)
+
+describe(
+  'Test "subtract" function',
+  () => {
+    test('Check number-number', () => {
+      const result = subtract(2,2);
+      expect(result).toBe(0);
+    });
+    test('Check non-number argument', () => {
+      const result = subtract('2', 2);
+      expect(result).toBe('something went wrong!');
+    });
+    test('Check NaN argument', () => {
+      const result = subtract(NaN, 2);
+      expect(result).toBe('something went wrong!');
+    });
+  }
+)
+
+describe(
+  'Test "multiply" function',
+  () => {
+    test('Check number-number', () => {
+      const result = multiply(2,5);
+      expect(result).toBe(10);
+    });
+    test('Check non-number argument', () => {
+      const result = multiply('2', 2);
+      expect(result).toBe('something went wrong!');
+    });
+    test('Check NaN argument', () => {
+      const result = multiply(NaN, 2);
+      expect(result).toBe('something went wrong!');
+    });
+  }
+)
 
 describe(
   'Test "divide" function',
   () => {
-    const testsData = [
-      { name: 'Check number / number', arg1: 2, arg2: 2, expected: 1 },
-      { name: 'Check non-number argument', arg1: '2', arg2: 2, expected: 'something went wrong!' },
-      { name: 'Check NaN argument', arg1: NaN, arg2: 2, expected: 'something went wrong!' },
-      { name: 'Check division by zero', arg1: 10, arg2: 0, expected: 'cannot divide by zero!' },
-    ];
-    testsData.forEach( ({ name, arg1, arg2, expected }) => {
-      it( name, () => { // it === test, these are aliases
-        const result = divide(arg1, arg2);
-        expect(result).toBe(expected);
-      })
+    test('Check number-number', () => {
+      const result = divide(10,5);
+      expect(result).toBe(2);
+    });
+    test('Check division by zero', () => {
+      const result = divide(10,0);
+      expect(result).toBe('cannot divide by zero!');
+    });
+    test('Check non-number argument', () => {
+      const result = divide('2', 2);
+      expect(result).toBe('something went wrong!');
+    });
+    test('Check NaN argument', () => {
+      const result = divide(NaN, 2);
+      expect(result).toBe('something went wrong!');
     });
   }
-);
+)

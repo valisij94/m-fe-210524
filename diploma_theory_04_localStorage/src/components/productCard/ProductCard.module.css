@@ -1,0 +1,33 @@
+.productCard {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+  padding: 10px;
+  border: 1px solid gray;
+  border-radius: 10px;
+}
+
+.productCardImg {
+  max-width: 100%;
+}
+
+.productCardPrice {
+  text-align: right;
+  color: green;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.productCardTags {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+
+.productCardTag {
+  margin: 0;
+  padding: 5px 10px;
+  border-radius: 15px;
+  background-color: aquamarine;
+}
